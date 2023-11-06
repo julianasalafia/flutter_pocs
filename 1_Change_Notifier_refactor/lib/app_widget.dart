@@ -10,7 +10,9 @@ class AppWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => HomePageController()),
+        ChangeNotifierProvider(
+          create: (context) => HomePageController(),
+        ),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
