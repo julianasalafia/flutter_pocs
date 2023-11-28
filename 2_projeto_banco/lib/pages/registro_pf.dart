@@ -14,6 +14,13 @@ class RegistroPf extends StatelessWidget {
           TextField(controller: viewModel.name),
           const Text('CPF:'),
           TextField(controller: viewModel.cpf),
+          TextButton(
+            onPressed: () {
+              print(viewModel.name.text);
+              print(viewModel.cpf.text);
+            },
+            child: const Text('Salvar'),
+          ),
         ],
       ),
     );

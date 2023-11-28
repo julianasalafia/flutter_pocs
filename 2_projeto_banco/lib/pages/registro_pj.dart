@@ -15,6 +15,13 @@ class RegistroPj extends StatelessWidget {
           TextField(controller: viewModel.name),
           const Text('CNPJ:'),
           TextField(controller: viewModel.cnpj),
+          TextButton(
+            onPressed: () {
+              print(viewModel.name.text);
+              print(viewModel.cnpj.text);
+            },
+            child: const Text('Salvar'),
+          ),
         ],
       ),
     );
