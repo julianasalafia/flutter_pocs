@@ -8,22 +8,6 @@ class TelaComSliverAppBar extends StatefulWidget {
 
 class _TelaComSliverAppBarState extends State<TelaComSliverAppBar> {
   final ScrollController _scrollController = ScrollController();
-  final ValueNotifier<bool> _isAppBarExpanded = ValueNotifier<bool>(false);
-
-  @override
-  void initState() {
-    super.initState();
-
-    _scrollController.addListener(() {
-      _isAppBarExpanded.value = _scrollController.hasClients && _scrollController.offset > (150 - kToolbarHeight);
-    });
-  }
-
-  @override
-  void dispose() {
-    _scrollController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,11 +29,12 @@ class _TelaComSliverAppBarState extends State<TelaComSliverAppBar> {
             delegate: SliverAppBarDelegate(
               minHeight: 1,
               maxHeight: 1,
-              child: ValueListenableBuilder(
-                valueListenable: _isAppBarExpanded,
-                builder: (_, __, ___) {
+              child: ListenableBuilder(
+                listenable: _scrollController,
+                builder: (_, __) {
+                 final isAppBarExpanded = _scrollController.hasClients && _scrollController.offset > (150 - kToolbarHeight);
                   return Container(
-                    color: _isAppBarExpanded.value ? Colors.black54 : Colors.transparent,
+                    color: isAppBarExpanded ? Colors.black54 : Colors.transparent,
                   );
                 }
               ),
